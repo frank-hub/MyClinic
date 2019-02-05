@@ -1,5 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
+<div class="right_col" role="main">
 <div class="row">
     <div class="col-md-12 col-sm-6 col-xs-12">
             <div class="x_panel">
@@ -47,7 +48,11 @@
                             <td>{{$patients->phone}}</td>
                           <td>{{$patients->area}}</td>
                             <td>
-                                <button disabled="disabled">Delete</button>
+                                    <form action="{{action('PatientsController@destroy', $patients['id'])}}" method="post">
+                                            @csrf
+                                            <input name="_method" type="hidden" value="DELETE">
+                                            <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>
+                                        </form>
                             </td>
                           </tr>
                     @endforeach
@@ -58,5 +63,6 @@
               </div>
             </div>
           </div>
+</div>
 </div>
 @endsection

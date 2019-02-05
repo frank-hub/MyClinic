@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Patient;
-class PatientsController extends Controller
+use App\Staff;
+class StaffsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,8 @@ class PatientsController extends Controller
      */
     public function index()
     {
-        $patient = Patient::all();
-        return view('admin.patient.present',compact('patient'));
+        // $staff = Staff::all();
+        return view('admin.staff.current_staff');
     }
 
     /**
@@ -35,28 +35,31 @@ class PatientsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required',
-            'number'=> 'required',
-            'occupation'=>'required',
-            'password'=>'required',
+        $this->validate($request,[
+            'name'=>'required',
+            'email'=>'required',
+            'number'=>'required',
+            'image'=>'required',
             'phone'=>'required',
-            'area'=>'required',
+            'area'=>'required'
         ]);
-        $patient = new Patient;
-
-        $patient->name=$request->get('name');
-        $patient->email=$request->get('email');
-        $patient->number=$request->get('number');
-        $patient->occupation=$request->get('occupation');
-        $patient->password=$request->get('password');
-        $patient->phone = $request->get('phone');
-        $patient->area = $request->get('area');
-    
-        $patient->save();
-        return redirect()->back()->with('success','New Patient Added');
-        
+        if ($request->hasFile('image')) {
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            $path = $request->file('image')->move(public_path('profile_images'), $fileNameToStore);
+        }
+        $staff = new Staff;
+        $staff->name=$request->get('name');
+        $staff->email=$request->get('email');
+        $staff->number=$request->get('number');
+        $staff->image=$request->get('image');
+        $staff->phone=$request->get('phone');
+        $staff->area=$request->get('area');
+        $staff->image = $fileNameToStore;
+        $staff->save();
+        return redirect()->back()->with('success','The Staff was added');
     }
 
     /**
@@ -101,8 +104,6 @@ class PatientsController extends Controller
      */
     public function destroy($id)
     {
-        $patient = Patient::find($id);
-        $patient->delete();
-        return redirect()->back()->with('success','Record Deleted');
+        //
     }
 }

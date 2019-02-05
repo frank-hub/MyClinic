@@ -79,8 +79,8 @@
                   </li>
                   <li><a><i class="fa fa-table"></i> Staffs <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="tables.html">Add Staff</a></li>
-                      <li><a href="tables_dynamic.html">Current Staff</a></li>
+                      <li><a href="{{url('/add_staff')}}">Add Staff</a></li>
+                    <li><a href="{{url('/current_staff')}}">Current Staff</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
@@ -224,14 +224,14 @@
           </div>
         </div>
         <!-- /top navigation -->
-        <div class="right_col" role="main">
+    
         @if (session('status'))
         <div class="alert alert-success" role="alert">
             {{ session('status') }}
         </div>
         @endif
         @yield('content')
-        </div>
+
         <!-- footer content -->
         <footer>
           <div class="pull-right">

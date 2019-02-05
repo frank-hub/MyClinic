@@ -22,10 +22,15 @@ Route::group(['middleware' => 'auth'], function () {
         return view('admin/patient/add');
     });
 
-   
+    Route::get('/current_staff','StaffsController@index')->name('admin.staff.current');
+    Route::get('/add_staff',function(){
+        return view('admin/staff/add_staff');
+    });
 });
 
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::resource('patients', 'PatientsController');
+Route::resource('staff', 'StaffsController');
