@@ -36,8 +36,8 @@
                     </div>
                     <div class="x_content">
   
-                      <form class="form-horizontal form-label-left" novalidate>
-  
+                    <form class="form-horizontal form-label-left" method="POST" action="{{ route('patients.store') }}" novalidate>
+                        @csrf
                         
                         <span class="section">Personal Info</span>
   
@@ -77,12 +77,12 @@
                             <input id="password" type="password" name="password" data-validate-length="6,8" class="form-control col-md-7 col-xs-12" required="required">
                           </div>
                         </div>
-                        <div class="item form-group">
+                        {{-- <div class="item form-group">
                           <label for="password2" class="control-label col-md-3 col-sm-3 col-xs-12">Repeat Password</label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
                             <input id="password2" type="password" name="password2" data-validate-linked="password" class="form-control col-md-7 col-xs-12" required="required">
                           </div>
-                        </div>
+                        </div> --}}
                         <div class="item form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telephone <span class="required">*</span>
                           </label>
