@@ -13,7 +13,8 @@ class PatientsController extends Controller
      */
     public function index()
     {
-        return view('admin.patient.add');
+        $patient = Patient::all();
+        return view('admin.patient.present',compact('patient'));
     }
 
     /**
@@ -54,7 +55,7 @@ class PatientsController extends Controller
         $patient->area = $request->get('area');
     
         $patient->save();
-        return redirect()->back()->with('success','New Customer Added');
+        return redirect()->back()->with('success','New Patient Added');
         
     }
 

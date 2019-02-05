@@ -68,7 +68,7 @@
                   <li><a><i class="fa fa-edit"></i> Patient <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                     <li><a href="{{url('add_patient')}}">Add Patient</a></li>
-                      <li><a href="#">Present Patients</a></li>
+                      <li><a href="{{url('patients')}}">Present Patients</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-desktop"></i> Bookings <span class="fa fa-chevron-down"></span></a>
@@ -224,9 +224,14 @@
           </div>
         </div>
         <!-- /top navigation -->
-
+        <div class="right_col" role="main">
+        @if (session('status'))
+        <div class="alert alert-success" role="alert">
+            {{ session('status') }}
+        </div>
+        @endif
         @yield('content')
-
+        </div>
         <!-- footer content -->
         <footer>
           <div class="pull-right">

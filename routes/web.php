@@ -17,9 +17,11 @@ Route::get('/', function () {
 Route::group(['middleware' => 'auth'], function () {
     
     Route::get('dashboard','AdminController@dashboard')->name('admin.dashboard');
+    Route::get('/patients', 'PatientConteoller@index')->name('admin.patient');
     Route::get('/add_patient', function () {
         return view('admin/patient/add');
     });
+
    
 });
 
