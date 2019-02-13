@@ -8,6 +8,9 @@
                   <h3>Add Patient</h3>
                 </div>
   
+                @if (Session::has('message'))
+                  <div class="alert alert-info">{{ Session::get('message') }}</div>
+                @endif
                 
               </div>
               <div class="clearfix"></div>
@@ -71,10 +74,17 @@
                             <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
                           </div>
                         </div>
-                        <div class="item form-group">
-                          <label for="password" class="control-label col-md-3">Password</label>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input id="password" type="password" name="password" data-validate-length="6,8" class="form-control col-md-7 col-xs-12" required="required">
+                            <div id="gender" class="btn-group" data-toggle="buttons">
+                              <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                <input type="radio" name="gender" value="male"> &nbsp; Male &nbsp;
+                              </label>
+                              <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                <input type="radio" name="gender" value="female"> Female
+                              </label>
+                            </div>
                           </div>
                         </div>
                         {{-- <div class="item form-group">

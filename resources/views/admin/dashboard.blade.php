@@ -6,24 +6,24 @@
       <div class="row tile_count">
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
           <span class="count_top"><i class="fa fa-user"></i> Total Patients</span>
-          <div class="count">2500</div>
+          <div class="count">{{$c_patients}}</div>
           
         </div>
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
           <span class="count_top"><i class="fa fa-clock-o"></i> Total Bookings</span>
-          <div class="count">123</div>
+          <div class="count">{{$bookings}}</div>
         </div>
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
           <span class="count_top"><i class="fa fa-user"></i> Total Males</span>
-          <div class="count green">2,500</div>
+        <div class="count green">{{$male}}</div>
         </div>
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
           <span class="count_top"><i class="fa fa-user"></i> Total Females</span>
-          <div class="count">4,567</div>
+        <div class="count">{{$female}}</div>
         </div>
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
           <span class="count_top"><i class="fa fa-user"></i> Total Staffs</span>
-          <div class="count">2,315</div>
+        <div class="count">{{$staff}}</div>
         </div>
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
           <span class="count_top"><i class="fa fa-user">Pending Confirmations</i> </span>

@@ -21,6 +21,7 @@ class CreateStaffTable extends Migration
             $table->string('image');
             $table->integer('phone');
             $table->string('area');
+            $table->string('password');
             $table->timestamps();
         });
     }

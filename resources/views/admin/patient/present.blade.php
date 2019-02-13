@@ -5,7 +5,9 @@
     <div class="col-md-12 col-sm-6 col-xs-12">
             <div class="x_panel">
               <div class="x_title">
-                <h2>Hover rows <small>Try hovering over the rows</small></h2>
+                <h2>Hover rows <small>
+                <a href="{{url('/patient_pdf')}}" class="btn btn-success"><i class="fa fa-pdf"></i>PDF</a>  
+                </small></h2>
                 <ul class="nav navbar-right panel_toolbox">
                   <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                   </li>
@@ -48,11 +50,12 @@
                             <td>{{$patients->phone}}</td>
                           <td>{{$patients->area}}</td>
                             <td>
-                                    <form action="{{action('PatientsController@destroy', $patients['id'])}}" method="post">
-                                            @csrf
-                                            <input name="_method" type="hidden" value="DELETE">
-                                            <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>
-                                        </form>
+                                <a href="{{ action('PatientsController@edit',$patients->id)}}" class="btn btn-primary">Edit</a>
+                                <form action="{{action('PatientsController@destroy', $patients['id'])}}" method="post">
+                                    @csrf
+                                    <input name="_method" type="hidden" value="DELETE">
+                                    <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>
+                                </form>
                             </td>
                           </tr>
                     @endforeach

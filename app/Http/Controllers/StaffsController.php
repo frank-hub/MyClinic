@@ -13,8 +13,8 @@ class StaffsController extends Controller
      */
     public function index()
     {
-        // $staff = Staff::all();
-        return view('admin.staff.current_staff');
+        $staff = Staff::all();
+        return view('admin.staff.current_staff',compact('staff'));
     }
 
     /**
@@ -41,7 +41,8 @@ class StaffsController extends Controller
             'number'=>'required',
             'image'=>'required',
             'phone'=>'required',
-            'area'=>'required'
+            'area'=>'required',
+            'password'=>'required'
         ]);
         if ($request->hasFile('image')) {
             $filenameWithExt = $request->file('image')->getClientOriginalName();
@@ -57,6 +58,7 @@ class StaffsController extends Controller
         $staff->image=$request->get('image');
         $staff->phone=$request->get('phone');
         $staff->area=$request->get('area');
+        $staff->password=$request->get('password');
         $staff->image = $fileNameToStore;
         $staff->save();
         return redirect()->back()->with('success','The Staff was added');
@@ -104,6 +106,8 @@ class StaffsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $staff = Staff::find($id);
+    $staff->delete();
+    return redirect()->back();
     }
 }
