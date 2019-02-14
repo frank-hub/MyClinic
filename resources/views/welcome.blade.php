@@ -48,7 +48,7 @@
                             <li><a href="{{url('/services')}}">Services</a></li>
                             <li><a href="{{url('/contact')}}">Contact</a></li>
                                 <li><a href="{{url('/login')}}">Login</a></li>
-                                <li><a href="{{url('/register')}}">Register</a></li>
+                                <li><a href="{{url('/login#signup')}}">Register</a></li>
                                 <li class="call-btn button gradient-bg mt-3 mt-md-0">
                                     <a class="d-flex justify-content-center align-items-center" href="#"><img src="images/emergency-call.png"> +34 586 778 8892</a>
                                 </li>

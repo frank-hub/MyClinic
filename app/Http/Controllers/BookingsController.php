@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Bookings;
+use DB;
+use Alert;
 class BookingsController extends Controller
 {
     /**
@@ -13,7 +15,7 @@ class BookingsController extends Controller
      */
     public function index()
     {
-        $bookings = Bookings::all();
+        $bookings = Bookings::get();
         return view('admin.bookings.current_bookings',compact('bookings'));
     }
 
@@ -57,7 +59,12 @@ class BookingsController extends Controller
      */
     public function edit($id)
     {
-        //
+       
+        $booking = Bookings::find($id);
+        $booking->status = "1";
+        $booking->save();
+        Alert::message('Success Message', 'Patient Booking Approved');
+        return redirect()->back();
     }
 
     /**
@@ -82,6 +89,10 @@ class BookingsController extends Controller
     {
         $booking = Bookings::find($id);
         $booking->delete();
+        Alert::error('Success Message', 'Patient Booking Approved');
         return redirect()->back();
+    }
+    public function status(){
+        // $booking = 
     }
 }

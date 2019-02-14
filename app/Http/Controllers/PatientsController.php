@@ -102,13 +102,13 @@ class PatientsController extends Controller
             'email'=> 'required',
             'number' => 'required'
           ]);
-
+           
           $share = Patient::find($id);
           $share->name = $request->get('name');
           $share->email = $request->get('email');
           $share->number = $request->get('number');
           $share->save();
-          Alert::success('Success Message', 'Patient Added Successfully');
+          Alert::info('Success Message', 'Patient Updated Successfully');
           return redirect()->back()->with('success', 'Stock has been updated');
     }
 

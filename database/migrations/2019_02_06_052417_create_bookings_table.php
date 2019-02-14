@@ -18,6 +18,7 @@ class CreateBookingsTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('phone');
+            $table->integer('status')->default('0');
             $table->string('start');
             $table->string('illness');
             $table->timestamps();

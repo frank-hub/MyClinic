@@ -43,15 +43,15 @@
                     @csrf
                         <div class="form-group">
                             <label for="name">Share Name:</label>
-                            <input type="text" class="form-control" name="share_name" value={{ $share->name }} />
+                            <input type="text" class="form-control" name="name" value={{ $share->name }} />
                         </div>
                         <div class="form-group">
                             <label for="price">Share Price :</label>
-                            <input type="text" class="form-control" name="share_price" value={{ $share->email }} />
+                            <input type="text" class="form-control" name="email" value={{ $share->email }} />
                         </div>
                         <div class="form-group">
                             <label for="quantity">Share Quantity:</label>
-                            <input type="text" class="form-control" name="share_qty" value={{ $share->number }} />
+                            <input type="text" class="form-control" name="number" value={{ $share->number }} />
                         </div>
                         <button type="submit" class="btn btn-primary">Update</button>
                     </form>
