@@ -11,7 +11,7 @@
         </div>
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
           <span class="count_top"><i class="fa fa-clock-o"></i> Total Bookings</span>
-          <div class="count">{{$bookings}}</div>
+          <div class="count">{{count($bookings)}}</div>
         </div>
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
           <span class="count_top"><i class="fa fa-user"></i> Total Males</span>
@@ -30,9 +30,6 @@
           <div class="count">325</div>
         </div>
       </div>
-  
-
-
       <div class="row">
         <div class="col-md-8 col-sm-8 col-xs-12">
 

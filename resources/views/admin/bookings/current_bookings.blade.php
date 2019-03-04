@@ -48,10 +48,10 @@
                             <td>
                                 <th><input type="checkbox" id="check-all" class="flat"></th>
                                 </td>
-                          <th scope="row">{{$booking->id}}</th>
-                          <td>{{$booking->name}}</td>
-                          <td>{{$booking->email}}</td>
-                          <td>{{$booking->phone}}</td>
+                        <th scope="row">{{$booking->id}}</th>
+                        <td>{{$booking->name}}</td>
+                        <td>{{$booking->email}}</td>
+                        <td>{{$booking->phone}}</td>
                         <td>{{$booking->start}}</td>
                         <td>{{$booking->illness}}</td>
                         <td>
@@ -78,4 +78,19 @@
         {{-- END --}}
     </div>
  </div>
+ <script src="{{asset('js/app.js')}}"></script>
+ <script>
+   var app = new Vue({
+     el:'.row',
+     created:function(){
+
+     },
+     data:{
+
+     },
+     methods:{
+       
+     }
+   })
+ </script>
 @endsection

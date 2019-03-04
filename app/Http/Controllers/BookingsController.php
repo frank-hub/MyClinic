@@ -37,7 +37,23 @@ class BookingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+        'name'=>'required',
+        'email'=>'required',
+        'phone'=>'required',
+        'start'=>'required',
+        'illness'=>'required',
+        ]);
+
+        $booking = new Bookings;
+        $booking->name = $request->get('name');
+        $booking->email = $request->get('email');
+        $booking->phone = $request->get('phone');
+        $booking->start = $request->get('start');
+        $booking->illness = $request->get('illness');
+        $booking->save();
+        Alert::success('Success Message', 'Patient Booking Placed');
+        return redirect()->back();
     }
 
     /**
@@ -89,10 +105,8 @@ class BookingsController extends Controller
     {
         $booking = Bookings::find($id);
         $booking->delete();
-        Alert::error('Success Message', 'Patient Booking Approved');
+        Alert::error('Success Message', 'Patient Booking Deleted');
         return redirect()->back();
     }
-    public function status(){
-        // $booking = 
-    }
+    
 }

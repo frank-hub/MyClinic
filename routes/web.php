@@ -28,15 +28,22 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('dashboard','AdminController@dashboard')->name('admin.dashboard');
     Route::get('/patients', 'PatientsController@index')->name('admin.patient');
     Route::get('/add_patient', function () {
-        return view('admin/patient/add');
+        $bookings = DB::table('bookings')->get();
+        return view('admin/patient/add',compact('bookings'));
     });
 
     Route::get('/current_staff','StaffsController@index')->name('admin.staff.current');
     Route::get('/add_staff',function(){
-        return view('admin/staff/add_staff');
+        $bookings = DB::table('bookings')->get();
+        return view('admin/staff/add_staff',compact('bookings'));
     });
 
     Route::get('/current_bookings','BookingsController@index')->name('admin.booking.current');
+    Route::get('place_booking', function () {
+        $bookings = DB::table('bookings')->get();
+        $patients = DB::table('patients')->get();
+        return view('admin.bookings.place_booking',compact('bookings','patients'));        
+    });
     Route::get('/patient_pdf','PatientsController@viewPDF')->name('pdf');
 });
 

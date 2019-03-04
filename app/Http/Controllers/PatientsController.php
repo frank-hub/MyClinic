@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Patient;
+use App\Bookings;
 use Session;
 use PDF;
 use Alert;
@@ -17,8 +18,9 @@ class PatientsController extends Controller
      */
     public function index()
     {
+        $bookings = Bookings::all();
         $patient = Patient::all();
-        return view('admin.patient.present',compact('patient'));
+        return view('admin.patient.present',compact('patient','bookings'));
     }
 
     /**
@@ -39,15 +41,15 @@ class PatientsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required',
-            'number'=> 'required',
-            'occupation'=>'required',
-            'gender'=>'required',
-            'phone'=>'required',
-            'area'=>'required',
-        ]);
+        // $this->validate($request, [
+        //     'name' => 'required',
+        //     'email' => 'required',
+        //     'number'=> 'required',
+        //     'occupation'=>'required',
+        //     'gender'=>'required',
+        //     'phone'=>'required',
+        //     'area'=>'required',
+        // ]);
         
         $patient = new Patient;
         $patient->name=$request->get('name');
@@ -59,6 +61,7 @@ class PatientsController extends Controller
         $patient->area = $request->get('area');
         $patient->save();
         // Session::flash('message', 'My message');
+
         Alert::success('Success Message', 'Patient Added Successfully');
         return redirect()->back()->with('success','New Patient Added');
         

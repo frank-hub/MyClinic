@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Staff;
+use App\Bookings;
 class StaffsController extends Controller
 {
     /**
@@ -14,7 +15,8 @@ class StaffsController extends Controller
     public function index()
     {
         $staff = Staff::all();
-        return view('admin.staff.current_staff',compact('staff'));
+        $bookings = Bookings::all();
+        return view('admin.staff.current_staff',compact('staff','bookings'));
     }
 
     /**

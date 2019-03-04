@@ -12,7 +12,7 @@ class AdminController extends Controller
 {
     public function dashboard(){
         $c_patients = Patient::count();
-        $bookings = Bookings::count();
+        $bookings = Bookings::all();
         $staff = Staff::count();
         $female = DB::table('patients')->where('gender','female')->count();
         $male = DB::table('patients')->where('gender','male')->count();
