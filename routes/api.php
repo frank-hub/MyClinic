@@ -17,6 +17,7 @@ Route::post('register', 'UserController@register');
 
 // Booking Api
 Route::post('book', 'ApiBookController@book');
+Route::delete('destroy/{id}', 'ApiBookController@destroy');
 
 Route::get('test/{id}', 'UserController@find');
 Route::get('test', 'UserController@test');

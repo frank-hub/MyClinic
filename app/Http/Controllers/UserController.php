@@ -68,6 +68,7 @@ return response()->json(['success'=>$success], $this-> successStatus);
      * @return \Illuminate\Http\Response 
      */ 
     public function test(){
+        
         $test = DB::table('bookings')->where('status','0')->get();
         return response()->json($test); 
     }
@@ -75,5 +76,9 @@ return response()->json(['success'=>$success], $this-> successStatus);
     public function find($id){
         $booking = Bookings::find($id);
         return response()->json(['success' => $booking], $this-> successStatus); 
+    }
+
+    public function logout(Request $request){
+        $accessToken = Auth::user()->token();
     }
 }

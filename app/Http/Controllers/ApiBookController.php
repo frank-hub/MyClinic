@@ -33,4 +33,11 @@ class ApiBookController extends Controller
         // $success['name'] = $booking->name;
         return response()->json($success);
     }
+
+    public function destroy($id){
+        $booking= Bookings::findorFail($id);
+        $booking->delete();
+        $success['token'] = $booking->createToken('MyClinic')-> accessToken;
+        return response()->json($success);
+    }
 }
