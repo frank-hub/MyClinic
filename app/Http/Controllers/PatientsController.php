@@ -8,6 +8,7 @@ use App\Bookings;
 use Session;
 use PDF;
 use Alert;
+use App\User;
 
 class PatientsController extends Controller
 {
@@ -20,7 +21,8 @@ class PatientsController extends Controller
     {
         $bookings = Bookings::all();
         $patient = Patient::all();
-        return view('admin.patient.present',compact('patient','bookings'));
+        $users = User::orderBy('id','Desc')->where('role','patient')->get();
+        return view('admin.patient.present',compact('patient','bookings','users'));
     }
 
     /**

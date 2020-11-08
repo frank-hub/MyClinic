@@ -12,8 +12,15 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('login', 'UserController@login');
-Route::post('register', 'UserController@register');
+Route::group(['prefix' => 'v1'], function () {
+    Route::post('login', 'UserController@login');
+    Route::get('/logout', 'UserController@logout')->middleware('auth:api');
+    Route::post('register', 'UserController@register');
+    Route::post('book', 'ApiBookController@book');
+    Route::get('all_bookings', 'ApiBookController@bookings');
+
+});
+
 
 // Booking Api
 Route::post('book', 'ApiBookController@book');

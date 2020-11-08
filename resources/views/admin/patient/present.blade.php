@@ -5,8 +5,8 @@
     <div class="col-md-12 col-sm-6 col-xs-12">
             <div class="x_panel">
               <div class="x_title">
-                <h2>Hover rows <small>
-                <a href="{{url('/patient_pdf')}}" class="btn btn-success"><i class="fa fa-pdf"></i>PDF</a>  
+                <h2>All Patients <small>
+                {{-- <a href="{{url('/patient_pdf')}}" class="btn btn-success"><i class="fa fa-pdf"></i>PDF</a>   --}}
                 </small></h2>
                 <ul class="nav navbar-right panel_toolbox">
                   <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -40,6 +40,25 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach ($users as $user)
+                          <tr>
+                            <th scope="row">{{$user->id}}</th>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                          <td>-</td>
+                            <td>
+                                <a href="{{ action('PatientsController@edit',$user->id)}}" class="btn btn-primary">Edit</a>
+                                <form action="{{action('PatientsController@destroy', $user['id'])}}" method="post">
+                                    @csrf
+                                    <input name="_method" type="hidden" value="DELETE">
+                                    <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>
+                                </form>
+                            </td>
+                          </tr>
+                    @endforeach
                     @foreach ($patient as $patients)
                           <tr>
                             <th scope="row">{{$patients->id}}</th>
@@ -59,6 +78,7 @@
                             </td>
                           </tr>
                     @endforeach
+                    
                    
                   </tbody>
                 </table>

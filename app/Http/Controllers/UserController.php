@@ -19,14 +19,23 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response 
      */ 
     public function login(){ 
-        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){ 
-            $user = Auth::user(); 
-            $success['token'] =  $user->createToken('MyApp')-> accessToken; 
-            return response()->json(['success' => $success], $this-> successStatus); 
-        } 
-        else{ 
-            return response()->json(['error'=>'Unauthorised'], 401); 
-        } 
+
+        if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
+            $user = Auth::user();
+            $success['token'] = $user->createToken('appToken')->accessToken;
+           //After successfull authentication, notice how I return json parameters
+            return response()->json([
+              'success' => true,
+              'token' => $success,
+              'user' => $user
+          ]);
+        } else {
+       //if authentication is unsuccessfull, notice how I return json parameters
+          return response()->json([
+            'success' => false,
+            'message' => 'Invalid Email or Password',
+        ], 401);
+        }
     }
 /** 
      * Register api 
@@ -35,21 +44,28 @@ class UserController extends Controller
      */ 
     public function register(Request $request) 
     { 
-        $validator = Validator::make($request->all(), [ 
-            'name' => 'required', 
-            'email' => 'required|email', 
-            'password' => 'required', 
-            'c_password' => 'required|same:password', 
+          
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+            'name' => 'required',
+            'role' => 'required'
+          ]);
+          if ($validator->fails()) {
+            return response()->json([
+              'success' => false,
+              'message' => $validator->errors(),
+            ], 401);
+          }
+          $input = $request->all();
+          $input['password'] = bcrypt($input['password']);
+          $user = User::create($input);
+          $success['token'] = $user->createToken('appToken')->accessToken;
+          return response()->json([
+            'success' => true,
+            'token' => $success,
+            'user' => $user
         ]);
-if ($validator->fails()) { 
-            return response()->json(['error'=>$validator->errors()], 401);            
-        }
-$input = $request->all(); 
-        $input['password'] = bcrypt($input['password']); 
-        $user = User::create($input); 
-        $success['token'] =  $user->createToken('MyApp')-> accessToken; 
-        $success['name'] =  $user->name;
-return response()->json(['success'=>$success], $this-> successStatus); 
     }
 /** 
      * details api 
@@ -78,7 +94,21 @@ return response()->json(['success'=>$success], $this-> successStatus);
         return response()->json(['success' => $booking], $this-> successStatus); 
     }
 
-    public function logout(Request $request){
-        $accessToken = Auth::user()->token();
-    }
+    public function logout(Request $res)
+    {
+      if (Auth::user()) {
+        $user = Auth::user()->token();
+        $user->revoke();
+
+        return response()->json([
+          'success' => true,
+          'message' => 'Logout successfully'
+      ]);
+      }else {
+        return response()->json([
+          'success' => false,
+          'message' => 'Unable to Logout'
+        ]);
+      }
+     }
 }

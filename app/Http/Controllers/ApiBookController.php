@@ -29,9 +29,21 @@ class ApiBookController extends Controller
         }
         $input = $request->all();
         $booking = Bookings::create($input);
-        $success['token'] = $booking->createToken('MyClinic')-> accessToken;
+        $token['token'] = $booking->createToken('MyClinic')-> accessToken;
         // $success['name'] = $booking->name;
-        return response()->json($success);
+        return response()->json(
+            [
+                'success' => true,
+                'token' => $token,
+                
+            ]
+        );
+    }
+
+    public function bookings(){
+        $all_booking = Bookings::orderBy('id','Desc')->get();
+        
+        return response()->json($all_booking);
     }
 
     public function destroy($id){

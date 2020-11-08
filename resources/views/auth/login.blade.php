@@ -94,14 +94,6 @@
                 @endif
               </div>
               <div>
-                <input type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" placeholder="Username" name="username" value="{{ old('username') }}" required autofocus />
-                 @if ($errors->has('username'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('username') }}</strong>
-                    </span>
-                @endif
-              </div>
-              <div>
                 <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required placeholder="Email" />
                 @if ($errors->has('email'))
                     <span class="invalid-feedback" role="alert">
@@ -117,6 +109,7 @@
                     </span>
                 @endif
               </div>
+              <input type="text" name="role" hidden value="staff">
               <div>
                   <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
               </div>
