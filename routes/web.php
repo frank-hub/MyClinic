@@ -54,3 +54,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('patients', 'PatientsController');
 Route::resource('staff', 'StaffsController');
 Route::resource('bookings', 'BookingsController');
+Route::resource('chats', 'ChatController');

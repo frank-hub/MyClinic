@@ -111,7 +111,7 @@
               </div>
               <input type="text" name="role" hidden value="staff">
               <div>
-                  <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                  <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required placeholder="Confirm Password">
               </div>
               <div>
                 <button type="submit" class="btn btn-default submit" >Submit</button>

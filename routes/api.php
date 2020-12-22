@@ -18,6 +18,9 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('register', 'UserController@register');
     Route::post('book', 'ApiBookController@book');
     Route::get('all_bookings', 'ApiBookController@bookings');
+    Route::get('all_chats', 'ChatController@show');
+    Route::post('chat_store', 'ChatController@chat');
+
 
 });
 
